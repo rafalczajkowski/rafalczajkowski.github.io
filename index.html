@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafał Czajkowski - Digital Marketing & Content Strategy</title>
+    <style>
+        :root {
+            --dark-bg: #0f0f23;
+            --primary-text: #f8fafc;
+            --secondary-text: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --gradient-start: #6366f1;
+            --gradient-end: #8b5cf6;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark-bg);
+            color: var(--primary-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Hero Section --- */
+        header {
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--gradient-start);
+            margin: 0 auto 25px auto;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary-text);
+            font-weight: 300;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-text);
+        }
+
+        .contact-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-text);
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto 60px auto;
+        }
+
+        /* --- About Section --- */
+        .about-content {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            color: #d1d5db;
+        }
+        
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-color: var(--gradient-start);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-bottom: 15px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            color: var(--secondary-text);
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .skill-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--gradient-start);
+            font-weight: bold;
+        }
+
+        /* --- Portfolio Section --- */
+        .expertise-tags {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .tag.active {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            opacity: 1;
+        }
+
+        .portfolio-item.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+            position: absolute;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--gradient-start);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-text);
+        }
+
+        .portfolio-description {
+            color: var(--secondary-text);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .portfolio-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .portfolio-tag {
+            color: #c7d2fe;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .portfolio-tag.automotive { background: rgba(235, 68, 90, 0.2); color: #fecaca; }
+        .portfolio-tag.fmcg { background: rgba(34, 197, 94, 0.2); color: #bbf7d0; }
+        .portfolio-tag.fintech { background: rgba(168, 85, 247, 0.2); color: #e9d5ff; }
+
+        /* --- Experience Timeline Section --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+            z-index: 0;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--dark-bg);
+            border: 4px solid var(--gradient-start);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-left {
+            left: 0;
+            padding-right: 50px;
+            text-align: right;
+        }
+        .timeline-right {
+            left: 50%;
+            padding-left: 50px;
+            text-align: left;
+        }
+        .timeline-left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--border-color);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--border-color);
+        }
+        .timeline-right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--border-color);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--border-color) transparent transparent;
+        }
+        .timeline-right::after {
+            left: -10px;
+        }
+        .timeline-content {
+            padding: 20px;
+            background: var(--card-bg);
+            position: relative;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+        .timeline-date {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gradient-start);
+            margin-bottom: 8px;
+        }
+        .timeline-content h3 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: var(--primary-text);
+        }
+        .timeline-content .company {
+            color: var(--secondary-text);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: var(--secondary-text);
+        }
+
+        /* --- Education Section --- */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .education-item {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--gradient-start);
+        }
+        .education-item h3 {
+            font-size: 1.1rem;
+            color: var(--primary-text);
+        }
+        .education-item .institution {
+            color: var(--gradient-end);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .education-item .date {
+            font-size: 0.9rem;
+            color: var(--secondary-text);
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            text-align: center;
+            background: radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* --- Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #16213e;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--secondary-text);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--primary-text);
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-text);
+        }
+
+        .modal-description {
+            color: var(--secondary-text);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .timeline::after {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid var(--border-color);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--border-color) transparent transparent;
+            }
+            .timeline-left, .timeline-right {
+                left: 0%;
+                text-align: left;
+            }
+            .timeline-left::after, .timeline-right::after {
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="hero">
+        <div class="header-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <!-- TODO: Replace with your actual photo URL -->
+                <img src="images/zdjecie-profilowe.jpg" alt="Rafał Czajkowski" class="profile-photo">
+                
+                <h1 class="hero-title">RAFAŁ CZAJKOWSKI</h1>
+                <p class="hero-subtitle">I blend creative storytelling with digital strategy to build brands that connect with people and drive results.</p>
+                <div class="contact-links">
+                     <div class="contact-link">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+                        rafalczajkowski@icloud.com
+                    </div>
+                    <a href="https://linkedin.com/in/rafal-czajkowski" target="_blank" class="contact-link">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.559.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zM4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zm-.203 2c.093 1.414.377 2.649.766 3.556.24.559.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.497-.623.737-1.182.389-.907.673-2.142.766-3.556H4.032z"/></svg>
+                        linkedin.com/in/rafal-czajkowski
+                    </a>
+                    <div class="contact-link">
+                        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                        Based in Poland
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Profile</h2>
+                <p class="about-content">
+                    I'm a creative professional with over three years of experience developing content and campaign ideas for world-class brands like Toyota, Lurpak, and McDonald's. My focus is on turning brand goals into engaging stories that work across multiple platforms. My background in IT gives me a unique advantage: I'm not just a creative thinker, but also a practical problem-solver who is comfortable with technology and can quickly learn the tools needed to get the job done.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Core Competencies</h2>
+                <p class="section-subtitle">Here's what I bring to the table.</p>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Content & Copywriting</h3>
+                        <ul class="skill-list">
+                            <li>Advertising Copy & Brand Storytelling</li>
+                            <li>Multi-platform Content Strategy</li>
+                            <li>Brand Voice Development & Consistency</li>
+                            <li>Event & Promotional Material Concepts</li>
+                            <li>Creative Brainstorming & Ideation</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Digital & Technical Skills</h3>
+                        <ul class="skill-list">
+                            <li>Adobe Creative Suite (Photoshop, Illustrator)</li>
+                            <li>AI-Assisted Content Creation</li>
+                            <li>Basic Graphic Design & Visual Concepts</li>
+                            <li>Marketing Tech Troubleshooting</li>
+                            <li>Rapid Software & Tool Adoption</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Communication & Collaboration</h3>
+                        <ul class="skill-list">
+                            <li>Cross-Functional Team Collaboration</li>
+                            <li>Client Communication & Relationship Management</li>
+                            <li>Creative Presentations & Pitching</li>
+                            <li>International Brand Experience</li>
+                            <li>Agile Project Management</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <ul class="skill-list">
+                            <li>Polish (Native)</li>
+                            <li>English (Advanced - C1)</li>
+                            <li>Spanish (Basic - in progress :))</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Work</h2>
+                <p class="section-subtitle">A selection of projects showing how I help brands connect with their audience.</p>
+                <div class="expertise-tags">
+                    <div class="tag active" onclick="filterPortfolio('all')">ALL</div>
+                    <div class="tag" onclick="filterPortfolio('automotive')">AUTOMOTIVE</div>
+                    <div class="tag" onclick="filterPortfolio('fmcg')">FMCG</div>
+                    <div class="tag" onclick="filterPortfolio('fintech')">FINTECH & LIFESTYLE</div>
+                </div>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item" data-category="automotive" onclick="openModal('toyota')">
+                        <div class="image-container">
+                            <img src="images/toyota-project.jpg" alt="Toyota Content Project" class="portfolio-image">
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-title">Toyota - Social Media</h3>
+                            <p class="portfolio-description">Tagline-style copy and visual concepts for Toyota’s social media, focusing on emotional tone and brand values.</p>
+                             <div class="portfolio-tags">
+                                <span class="portfolio-tag automotive">Social Media</span>
+                                <span class="portfolio-tag automotive">Automotive</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="fmcg" onclick="openModal('fmcg')">
+                        <div class="image-container">
+                            <img src="images/fmcg-project.jpg" alt="FMCG Content Project" class="portfolio-image">
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-title">FMCG - Content & Photoshoots</h3>
+                            <p class="portfolio-description">Social media content, visuals, and photoshoot concepts for brands like Ferrero, Lurpak, and Wella.</p>
+                             <div class="portfolio-tags">
+                                <span class="portfolio-tag fmcg">Content Marketing</span>
+                                <span class="portfolio-tag fmcg">FMCG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item" data-category="fintech" onclick="openModal('fintech')">
+                        <div class="image-container">
+                            <img src="images/fintech-project.jpg" alt="Fintech Content Project" class="portfolio-image">
+                        </div>
+                        <div class="portfolio-content">
+                            <h3 class="portfolio-title">Fintech & Lifestyle - Copy & Content</h3>
+                            <p class="portfolio-description">Copy for fintech, telecom, and lifestyle brands like Plus/Plush, eService, and McDonald's.</p>
+                             <div class="portfolio-tags">
+                                <span class="portfolio-tag fintech">UX Copy</span>
+                                <span class="portfolio-tag fintech">Fintech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <p class="section-subtitle">My professional journey has given me a unique blend of creative and technical experience.</p>
+                <div class="timeline">
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2021 - 2023</div>
+                            <h3>Junior Copywriter / Content Creator</h3>
+                            <div class="company">Dentsu</div>
+                            <p>Developed ad copy and creative concepts for brands like Toyota, McDonald's, Arla Foods, Velo Bank, and Plus. Contributed to creative strategy and visual content production.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-right">
+                        <div class="timeline-content">
+                             <div class="timeline-date">2024 - Present</div>
+                             <h3>IT Support Specialist</h3>
+                             <div class="company">Medicover</div>
+                             <p>This role sharpened my problem-solving skills and taught me how to communicate complex technical information clearly, which helps me learn the digital tools that power modern marketing.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2020 - 2021</div>
+                            <h3>Freelance Content Creator</h3>
+                            <div class="company">Self-Employed</div>
+                            <p>Built foundational skills in content creation, client communication, and project management. Managed independent projects from concept to delivery, developing direct client relationships.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title">Education & Certifications</h2>
+                <p class="section-subtitle">Continuously learning to stay at the forefront of creative and technical trends.</p>
+                <div class="education-grid">
+                    <div class="education-item">
+                        <h3>Postgraduate Studies, Cloud DevOps Engineer</h3>
+                        <div class="institution">WSB Merito University</div>
+                        <div class="date">2024 - 2025</div>
+                    </div>
+                    <div class="education-item">
+                        <h3>Bachelor's Degree, Aviation Management</h3>
+                        <div class="institution">University of Information Technology and Management</div>
+                        <div class="date">2015 - 2018</div>
+                    </div>
+                    <div class="education-item">
+                        <h3>Adobe Illustrator Training</h3>
+                        <div class="institution">I.T. Media</div>
+                        <div class="date">February 2021</div>
+                    </div>
+                     <div class="education-item">
+                        <h3>Adobe Photoshop Training</h3>
+                        <div class="institution">Bartosz Troch Studio</div>
+                        <div class="date">February 2021</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Let's Create Together</h2>
+                <p class="section-subtitle">
+                    I'm always open to new opportunities where I can help build great brands. If you think I'd be a good fit for your team, I'd love to hear from you.
+                </p>
+                <a href="mailto:rafalczajkowski@icloud.com" class="contact-btn">Get In Touch</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <img id="modal-image" class="modal-image" src="" alt="Portfolio image">
+            <h3 id="modal-title" class="modal-title"></h3>
+            <p id="modal-description" class="modal-description"></p>
+        </div>
+    </div>
+
+    <script>
+        function filterPortfolio(category) {
+            const tags = document.querySelectorAll('.tag');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            const currentTag = event.currentTarget;
+            tags.forEach(tag => tag.classList.remove('active'));
+            currentTag.classList.add('active');
+            
+            portfolioItems.forEach(item => {
+                const itemCategory = item.dataset.category;
+                if (category === 'all' || itemCategory === category) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        const portfolioData = {
+            toyota: {
+                image: 'images/toyota-project.jpg',
+                title: 'Toyota - Social Media Campaign',
+                description: 'A comprehensive content campaign for Toyota covering social media posts, advertising copy, and marketing materials. The project focused on highlighting the innovation, safety, and reliability of the Toyota brand. The content created included communication strategy, tone of voice, and a consistent message across all marketing channels.'
+            },
+            fmcg: {
+                image: 'images/fmcg-project.jpg',
+                title: 'FMCG - Content Marketing Strategy',
+                description: 'Development of a comprehensive content strategy for FMCG products with an emphasis on naturalness, health, and daily consumer benefits. The project included copy for packaging, social media campaigns, POS materials, and a multi-channel communication strategy. All content was tailored to different target groups and purchasing moments.'
+            },
+            fintech: {
+                image: 'images/fintech-project.jpg',
+                title: 'Fintech & Lifestyle - UX Copy & Content',
+                description: 'Creation of copy for fintech applications and lifestyle brands with a focus on simplicity, security, and clarity of complex financial processes. The project included interface texts, system messages, user onboarding processes, and educational materials. All content was tested for usability and comprehensibility.'
+            }
+        };
+
+        function openModal(projectId) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            
+            const project = portfolioData[projectId];
+            
+            modalImage.src = project.image;
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.description;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
