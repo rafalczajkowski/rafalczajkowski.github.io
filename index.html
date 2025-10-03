@@ -207,7 +207,7 @@
             font-weight: bold;
         }
 
-        /* --- Portfolio Section (NEW HORIZONTAL SCROLL) --- */
+        /* --- Portfolio Section --- */
         .filter-section {
             margin-bottom: 40px;
         }
@@ -601,8 +601,8 @@
             z-index: 1000;
             align-items: center;
             justify-content: center;
-            padding: 20px;
             overflow-y: auto;
+            padding: 20px;
         }
 
         .modal.active {
@@ -637,13 +637,69 @@
             color: var(--primary-text);
         }
 
-        .modal-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            border-radius: 12px;
+        /* Gallery */
+        .gallery-container {
+            position: relative;
             margin-bottom: 30px;
+            border-radius: 12px;
+            overflow: hidden;
             background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .gallery-container img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(99, 102, 241, 0.9);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .gallery-nav-btn:hover {
+            background: var(--gradient-end);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .gallery-nav-btn.left {
+            left: 15px;
+        }
+
+        .gallery-nav-btn.right {
+            right: 15px;
+        }
+
+        .gallery-counter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .modal-title {
@@ -878,7 +934,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                     <div class="carousel-container" id="carouselContainer">
                         <div class="portfolio-carousel" id="portfolioCarousel">
                             
-                            <div class="portfolio-card" data-industry="automotive" data-type="social" onclick="openModal('toyota-social')">
+                            <div class="portfolio-card" data-industry="automotive" data-type="social" onclick="openProjectModal('toyota-social')">
                                 <div class="card-image">🚗</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Toyota</h3>
@@ -890,7 +946,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="fmcg" data-type="graphics" onclick="openModal('ferrero')">
+                            <div class="portfolio-card" data-industry="fmcg" data-type="graphics" onclick="openProjectModal('ferrero')">
                                 <div class="card-image">🍫</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Ferrero</h3>
@@ -902,7 +958,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="fmcg" data-type="social" onclick="openModal('lurpak')">
+                            <div class="portfolio-card" data-industry="fmcg" data-type="social" onclick="openProjectModal('lurpak')">
                                 <div class="card-image">🧈</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Lurpak</h3>
@@ -914,7 +970,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="fmcg" data-type="social" onclick="openModal('wella')">
+                            <div class="portfolio-card" data-industry="fmcg" data-type="social" onclick="openProjectModal('wella')">
                                 <div class="card-image">💇</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Wella</h3>
@@ -926,7 +982,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="aitech" data-type="content" onclick="openModal('datali-content')">
+                            <div class="portfolio-card" data-industry="aitech" data-type="content" onclick="openProjectModal('datali-content')">
                                 <div class="card-image">🤖</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Datali</h3>
@@ -938,7 +994,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="aitech" data-type="documentation" onclick="openModal('datali-sop')">
+                            <div class="portfolio-card" data-industry="aitech" data-type="documentation" onclick="openProjectModal('datali-sop')">
                                 <div class="card-image">📄</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Datali - SOPs</h3>
@@ -950,7 +1006,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="aitech" data-type="ab-test" onclick="openModal('datali-ab')">
+                            <div class="portfolio-card" data-industry="aitech" data-type="ab-test" onclick="openProjectModal('datali-ab')">
                                 <div class="card-image">📊</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Datali - A/B Testing</h3>
@@ -962,7 +1018,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="fintech" data-type="social" onclick="openModal('plus')">
+                            <div class="portfolio-card" data-industry="fintech" data-type="social" onclick="openProjectModal('plus')">
                                 <div class="card-image">💳</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Plus/Plush</h3>
@@ -974,7 +1030,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="fintech" data-type="social" onclick="openModal('mcdonalds')">
+                            <div class="portfolio-card" data-industry="fintech" data-type="social" onclick="openProjectModal('mcdonalds')">
                                 <div class="card-image">🍔</div>
                                 <div class="card-content">
                                     <h3 class="card-title">McDonald's</h3>
@@ -986,7 +1042,7 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                                 </div>
                             </div>
 
-                            <div class="portfolio-card" data-industry="fmcg" data-type="social" onclick="openModal('carlsberg')">
+                            <div class="portfolio-card" data-industry="fmcg" data-type="social" onclick="openProjectModal('carlsberg')">
                                 <div class="card-image">🍺</div>
                                 <div class="card-content">
                                     <h3 class="card-title">Carlsberg</h3>
@@ -1091,10 +1147,18 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
     </main>
 
     <!-- Modal -->
-    <div id="modal" class="modal" onclick="closeModalOnOutsideClick(event)">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">×</button>
-            <img id="modalImage" class="modal-image" src="" alt="">
+    <div id="projectModal" class="modal">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeProjectModal()">×</button>
+            
+            <!-- Gallery -->
+            <div id="galleryContainer" class="gallery-container">
+                <img id="galleryImage" src="" alt="Project image">
+                <button class="gallery-nav-btn left" onclick="changeProjectImage(-1)">‹</button>
+                <button class="gallery-nav-btn right" onclick="changeProjectImage(1)">›</button>
+                <div class="gallery-counter" id="galleryCounter"></div>
+            </div>
+
             <h2 id="modalTitle" class="modal-title"></h2>
             
             <div class="case-study-section">
@@ -1121,7 +1185,11 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
         const projectData = {
             'toyota-social': {
                 title: 'Toyota - Social Media Content',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=Toyota+Post+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Toyota+Post+2',
+                    'https://via.placeholder.com/800x500/ec4899/ffffff?text=Toyota+Post+3'
+                ],
                 challenge: 'Toyota needed social content that went beyond specs and technical features, connecting emotionally with their audience and reinforcing brand values.',
                 approach: 'Crafted tagline-style copy and visual concepts that highlighted the emotional aspects of car ownership, focusing on lifestyle, family moments, and personal journeys rather than just vehicle features.',
                 impact: 'Delivered engaging social media content that resonated with Toyota\'s community, increased engagement rates, and elevated the brand\'s social presence with a more human-centered approach.',
@@ -1129,7 +1197,10 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'ferrero': {
                 title: 'Ferrero - Visual Content',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=Ferrero+Photo+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Ferrero+Photo+2'
+                ],
                 challenge: 'Premium chocolate brand needed visually stunning content that maintained brand elegance while driving social engagement.',
                 approach: 'Developed photoshoot concepts and visual direction that emphasized product craftsmanship, premium positioning, and moments of indulgence.',
                 impact: 'Created scroll-stopping visual content that reinforced Ferrero\'s premium brand positioning and increased social media engagement.',
@@ -1137,7 +1208,11 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'lurpak': {
                 title: 'Lurpak - Social Strategy',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=Lurpak+Post+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Lurpak+Post+2',
+                    'https://via.placeholder.com/800x500/ec4899/ffffff?text=Lurpak+Post+3'
+                ],
                 challenge: 'Iconic butter brand needed fresh social content that maintained heritage while appealing to modern cooking enthusiasts.',
                 approach: 'Created recipe-focused content and cooking inspiration that positioned Lurpak as an essential ingredient for culinary creativity.',
                 impact: 'Strengthened brand relevance among cooking enthusiasts and drove engagement through inspirational food content.',
@@ -1145,7 +1220,12 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'wella': {
                 title: 'Wella - Beauty Content',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=Wella+Content+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Wella+Content+2',
+                    'https://via.placeholder.com/800x500/ec4899/ffffff?text=Wella+Content+3',
+                    'https://via.placeholder.com/800x500/10b981/ffffff?text=Wella+Content+4'
+                ],
                 challenge: 'Professional haircare brand needed content that connected with both salon professionals and end consumers.',
                 approach: 'Developed dual-track content strategy with technical education for professionals and inspiring transformations for consumers.',
                 impact: 'Built stronger connections with both B2B and B2C audiences, establishing Wella as a thought leader in professional haircare.',
@@ -1153,7 +1233,11 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'datali-content': {
                 title: 'Datali - LinkedIn Content Strategy',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=Datali+LinkedIn+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Datali+LinkedIn+2',
+                    'https://via.placeholder.com/800x500/ec4899/ffffff?text=Datali+LinkedIn+3'
+                ],
                 challenge: 'AI consultancy needed to build brand visibility and thought leadership on LinkedIn to attract enterprise clients in a crowded market.',
                 approach: 'Created a consistent content calendar with educational posts, case study insights, and industry perspectives. Developed a unique brand voice that balanced technical expertise with accessibility.',
                 impact: 'Built strong brand presence on LinkedIn, increased follower engagement, positioned the company as a trusted AI advisor, and supported new client acquisition through content-driven inbound leads.',
@@ -1161,7 +1245,9 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'datali-sop': {
                 title: 'Datali - Process Documentation',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=SOP+Document'
+                ],
                 challenge: 'The content team lacked standardized processes, leading to inconsistent output and inefficient workflows.',
                 approach: 'Documented complete SOPs covering content creation workflows, approval processes, brand guidelines application, and quality control measures. Created templates and checklists for team use.',
                 impact: 'Streamlined content production, reduced revision cycles, and enabled new team members to onboard faster with clear documentation and repeatable processes.',
@@ -1169,7 +1255,10 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'datali-ab': {
                 title: 'Datali - A/B Testing',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=A/B+Test+Results',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Email+Variants'
+                ],
                 challenge: 'Outreach campaigns had low response rates and needed optimization to improve engagement with potential clients.',
                 approach: 'Designed and executed A/B tests comparing different subject lines, email lengths, value propositions, and calls-to-action. Analyzed results to identify winning patterns.',
                 impact: 'Increased email response rates by 35% by identifying the most effective messaging approaches and optimizing outreach strategy based on data-driven insights.',
@@ -1177,7 +1266,10 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'plus': {
                 title: 'Plus/Plush - Fintech Copy',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=Fintech+UX+Copy+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Fintech+UX+Copy+2'
+                ],
                 challenge: 'Complex fintech products needed clear, user-friendly copy that builds trust and guides users through complicated financial processes.',
                 approach: 'Wrote microcopy and UX content that simplified technical features, explained benefits clearly, and reduced user friction. Used plain language and benefit-focused messaging.',
                 impact: 'Improved user experience and conversion rates through clarity and compelling messaging. Reduced support tickets by making interfaces more intuitive.',
@@ -1185,7 +1277,10 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'mcdonalds': {
                 title: 'McDonald\'s - Social Content',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=McDonalds+Post+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=McDonalds+Post+2'
+                ],
                 challenge: 'Global QSR brand needed localized content that maintained brand consistency while resonating with local audiences.',
                 approach: 'Created promotional copy and social content that balanced global brand guidelines with local cultural relevance and seasonal campaigns.',
                 impact: 'Delivered engaging content that drove promotional awareness and maintained McDonald\'s strong social presence in the market.',
@@ -1193,13 +1288,75 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             },
             'carlsberg': {
                 title: 'Carlsberg - Brand Content',
-                image: '',
+                images: [
+                    'https://via.placeholder.com/800x500/667eea/ffffff?text=Carlsberg+Campaign+1',
+                    'https://via.placeholder.com/800x500/764ba2/ffffff?text=Carlsberg+Campaign+2',
+                    'https://via.placeholder.com/800x500/ec4899/ffffff?text=Carlsberg+Campaign+3'
+                ],
                 challenge: 'Global beer brand needed campaign content that connected with diverse audiences while maintaining premium brand positioning.',
                 approach: 'Developed brand messaging and campaign materials that emphasized quality, heritage, and moments of celebration.',
                 impact: 'Created compelling brand content that reinforced Carlsberg\'s premium positioning and drove campaign engagement.',
                 tags: ['FMCG', 'Social Media']
             }
         };
+
+        // Gallery state
+        let currentProject = null;
+        let currentImageIndex = 0;
+
+        // Open modal
+        function openProjectModal(projectId) {
+            currentProject = projectData[projectId];
+            if (!currentProject) return;
+            
+            currentImageIndex = 0;
+            
+            document.getElementById('modalTitle').textContent = currentProject.title;
+            document.getElementById('modalChallenge').textContent = currentProject.challenge;
+            document.getElementById('modalApproach').textContent = currentProject.approach;
+            document.getElementById('modalImpact').textContent = currentProject.impact;
+            
+            updateGalleryImage();
+            
+            // Add tags
+            const tagsContainer = document.getElementById('modalTags');
+            tagsContainer.innerHTML = currentProject.tags.map(tag => {
+                const tagClass = tag.toLowerCase().replace(/\//g, '').replace(/\s+/g, '-');
+                return `<span class="card-tag tag-${tagClass}">${tag}</span>`;
+            }).join('');
+
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            currentImageIndex = 0;
+        }
+
+        function changeProjectImage(direction) {
+            if (!currentProject) return;
+            
+            currentImageIndex += direction;
+            
+            if (currentImageIndex < 0) {
+                currentImageIndex = currentProject.images.length - 1;
+            }
+            if (currentImageIndex >= currentProject.images.length) {
+                currentImageIndex = 0;
+            }
+            
+            updateGalleryImage();
+        }
+
+        function updateGalleryImage() {
+            if (!currentProject) return;
+            
+            document.getElementById('galleryImage').src = currentProject.images[currentImageIndex];
+            document.getElementById('galleryCounter').textContent = 
+                `${currentImageIndex + 1} / ${currentProject.images.length}`;
+        }
 
         // Filter functionality
         let activeIndustry = 'all';
@@ -1246,7 +1403,6 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
                 }
             });
 
-            // Show empty state if no cards visible
             const emptyState = document.getElementById('emptyState');
             const carouselContainer = document.getElementById('carouselContainer');
             if (visibleCount === 0) {
@@ -1270,48 +1426,20 @@ Along the way, I've written copy, developed case studies, and shaped visual cont
             }
         }
 
-        // Modal functionality
-        function openModal(projectId) {
-            const project = projectData[projectId];
-            if (!project) return;
-
-            document.getElementById('modalTitle').textContent = project.title;
-            document.getElementById('modalChallenge').textContent = project.challenge;
-            document.getElementById('modalApproach').textContent = project.approach;
-            document.getElementById('modalImpact').textContent = project.impact;
-            
-            const modalImage = document.getElementById('modalImage');
-            if (project.image) {
-                modalImage.src = project.image;
-                modalImage.style.display = 'block';
-            } else {
-                modalImage.style.display = 'none';
+        // Close modal when clicking outside
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
             }
+        });
 
-            const tagsContainer = document.getElementById('modalTags');
-            tagsContainer.innerHTML = project.tags.map(tag => {
-                const tagClass = tag.toLowerCase().replace(/\//g, '').replace(/\s+/g, '-');
-                return `<span class="card-tag tag-${tagClass}">${tag}</span>`;
-            }).join('');
-
-            document.getElementById('modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function closeModalOnOutsideClick(e) {
-            if (e.target.id === 'modal') {
-                closeModal();
-            }
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeModal();
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('projectModal');
+            if (modal.classList.contains('active')) {
+                if (e.key === 'Escape') closeProjectModal();
+                if (e.key === 'ArrowLeft') changeProjectImage(-1);
+                if (e.key === 'ArrowRight') changeProjectImage(1);
             }
         });
     </script>
